@@ -5,3 +5,18 @@
 // який створений у файлі index.html
 // Запустити програму за допомогою Live Server
 // Перевірити за допомогою команди npm tests/task1.test.js 
+const getUsers =  async ()=>{
+    const usersResponse =  await fetch(`https://jsonplaceholder.typicode.com/users`);
+    return await usersResponse.json();
+}
+
+const users = getUsers();
+const userList = document.querySelector('.usersList');
+users.then((usersData)=>{
+    usersData.forEach((user)=>{
+        const liElement = document.createElement('li');
+        liElement.innerText = user.name;
+        userList.appendChild(liElement);
+    })
+})
+
